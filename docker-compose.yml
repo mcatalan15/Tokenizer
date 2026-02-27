@@ -9,6 +9,8 @@ services:
       - "8545:8545"
     stdin_open: true
     tty: true
+    env_file:
+      - .env
     environment:
       - PATH=/root/.foundry/bin:$PATH
     command: ["bash"]

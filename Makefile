@@ -29,16 +29,19 @@ build-contracts:
 
 # Run Tests
 test:
-	make exec CMD="forge test"
+	make exec CMD="forge test -vvv"
 
 # Deploy to Sepolia testnet
 deploy-sepolia:
-	make exec CMD="forge script deployment/script/DeploySneak42Token.s.sol:DeploySneak42Token -- rpc-url \$${RPC_URL_SEPOLIA} --private-key \$${PRIVATE_KEY} --broadcast"
+	@docker-compose exec tokenizer bash -c "source .env && forge script deployment/script/DeploySneak42Token.s.sol:DeploySneak42Token \
+		--rpc-url \$$SEPOLIA_RPC_URL \
+		--private-key \$$PRIVATE_KEY \
+		--broadcast -vvvv"
 
 # Verify contract on Etherscan
 verify:
-	make exec CMD="forge verify-contract $(ADDRESS) code/src/Sneak42Token.sol:Sneak42Token --chain sepolia --ethers-api-key \$${ETHERSCAN_API_KEY}"
-
+	@docker-compose exec tokenizer bash -c "source .env && forge verify-contract $(ADDRESS) code/src/Sneak42Token.sol:Sneak42Token \
+		--chain sepolia --etherscan-api-key \$$ETHERSCAN_API_KEY --watch"
 # Stop and remove containers
 down:
 	@echo "⏹️ Stopping containers..."
