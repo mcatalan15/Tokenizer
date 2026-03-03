@@ -1,8 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-import "forge-std/Test.sol";
-import {Sneak42Token} from "../src/Sneak42Token.sol";   // ← Foundry will resolve via src = 'code/src'
+import {Test} from "forge-std/Test.sol";
+import {console} from "forge-std/console.sol";
+import {Sneak42Token} from "src/Sneak42Token.sol";
 
 contract Sneak42TokenTest is Test {
     Sneak42Token token;
@@ -13,7 +14,7 @@ contract Sneak42TokenTest is Test {
         token = new Sneak42Token();
     }
 
-    function testInitialSupply() public {
+    function testInitialSupply() public view {
         assertEq(token.totalSupply(), token.TOTAL_SUPPLY());
         assertEq(token.balanceOf(owner), token.TOTAL_SUPPLY());
     }
@@ -21,7 +22,8 @@ contract Sneak42TokenTest is Test {
     function testTransfer() public {
         uint256 amount = 1000 * 10**18;
         console.log("Owner balance before transfer:", token.balanceOf(owner) / 1e18, "tokens");
-        token.transfer(user1, amount);
+        bool success = token.transfer(user1, amount);
+        require(success, "Transfer failed");
         assertEq(token.balanceOf(user1), amount);
         assertEq(token.balanceOf(owner), token.TOTAL_SUPPLY() - amount);
     }
