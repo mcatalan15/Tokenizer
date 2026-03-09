@@ -127,8 +127,3 @@ logs:
 	@docker volume prune -f
 	@docker system prune -f
 	@echo "✅ Full cleanup completed"
-
-# Rebuild from scratch
-re: fclean build up
-
-.PHONY: build up down logs exec clean fclean re
