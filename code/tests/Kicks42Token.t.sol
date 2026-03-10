@@ -3,15 +3,15 @@ pragma solidity ^0.8.20;
 
 import {Test} from "forge-std/Test.sol";
 import {console} from "forge-std/console.sol";
-import {Sneak42Token} from "src/Sneak42Token.sol";
+import {Kicks42Token} from "src/Kicks42Token.sol";
 
-contract Sneak42TokenTest is Test {
-    Sneak42Token token;
+contract Kicks42TokenTest is Test {
+    Kicks42Token token;
     address owner = address(this);
     address user1 = makeAddr("user1");
 
     function setUp() public {
-        token = new Sneak42Token();
+        token = new Kicks42Token();
     }
 
     function testInitialSupply() public view {

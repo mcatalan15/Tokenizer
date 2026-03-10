@@ -4,7 +4,7 @@ A smart contract development project using Docker, Foundry, and Solidity to crea
 
 ## Project Architecture
 
-This project uses a dockerized setup with Foundry to develop, test, and deploy token smart contracts. The main smart contract is `Sneak42Token`, a customized ERC-20 token.
+This project uses a dockerized setup with Foundry to develop, test, and deploy token smart contracts. The main smart contract is `Kicks42Token`, a customized ERC-20 token.
 
 ### Technologies Used
 
@@ -172,12 +172,12 @@ Tokenizer/
 ├── README.md               # This file
 ├── code/
 │   ├── src/
-│   │   └── Sneak42Token.sol # Main smart contract
+│   │   └── Kicks42Token.sol # Main smart contract
 │   └── tests/
-│       └── Sneak42Token.t.sol # Contract tests
+│       └── Kicks42Token.t.sol # Contract tests
 ├── deployment/
 │   └── script/
-│       └── DeploySneak42Token.s.sol # Deployment script
+│       └── DeployKicks42Token.s.sol # Deployment script
 └── broadcast/               # Deployment history (auto-generated)
 ```
 

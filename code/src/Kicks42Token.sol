@@ -5,16 +5,16 @@ import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 
 /**
- * @title Sneak42Token
+ * @title Kicks42Token
  * @dev Simple ERC-20 token for sneaker reselling loyalty points.
  * Fixed supply minted to deployer (owner). Ownable for potential transfers or renounces.
  * Security: Only owner can renounce; no additional minting to prevent inflation.
  */
 
-contract Sneak42Token is ERC20, Ownable {
+contract Kicks42Token is ERC20, Ownable {
     uint public constant TOTAL_SUPPLY = 10_000_000 * 10**18; // 10M tokens, 18 decimals
 
-    constructor() ERC20("Sneak42Token", "S42T") Ownable(msg.sender) {
+    constructor() ERC20("Kicks42Token", "K42T") Ownable(msg.sender) {
         _mint(msg.sender, TOTAL_SUPPLY); // Mint all to deployer for controlled distribution
     }
 

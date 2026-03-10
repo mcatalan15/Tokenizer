@@ -34,12 +34,12 @@ test:
 # Deploy to Sepolia testnet and update .env with contract address
 deploy-sepolia:
 	@echo "🚀 Deploying to Sepolia..."
-	@docker-compose exec tokenizer bash -c "source .env && forge script deployment/script/DeploySneak42Token.s.sol:DeploySneak42Token \
+	@docker-compose exec tokenizer bash -c "source .env && forge script deployment/script/DeployKicks42Token.s.sol:DeployKicks42Token \
 		--rpc-url \$$SEPOLIA_RPC_URL \
 		--private-key \$$PRIVATE_KEY \
 		--broadcast -vvvv"
 	@echo "📝 Updating .env with deployed contract address..."
-	@NEW_ADDRESS=$$(cat broadcast/DeploySneak42Token.s.sol/11155111/run-latest.json | grep -o '"contractAddress": "[^"]*"' | head -1 | cut -d'"' -f4); \
+	@NEW_ADDRESS=$$(cat broadcast/DeployKicks42Token.s.sol/11155111/run-latest.json | grep -o '"contractAddress": "[^"]*"' | head -1 | cut -d'"' -f4); \
 	if [ ! -z "$$NEW_ADDRESS" ]; then \
 		if grep -q "^CONTRACT_ADDRESS=" .env; then \
 			sed -i '' "s/^CONTRACT_ADDRESS=.*/CONTRACT_ADDRESS=$$NEW_ADDRESS/" .env; \
@@ -56,7 +56,7 @@ deploy-sepolia:
 # Get the last deployed contract address
 get-address:
 	@echo "🔍 Last deployed contract address:"
-	@cat broadcast/DeploySneak42Token.s.sol/11155111/run-latest.json | grep -o '"contractAddress": "[^"]*"' | head -1 | cut -d'"' -f4
+	@cat broadcast/DeployKicks42Token.s.sol/11155111/run-latest.json | grep -o '"contractAddress": "[^"]*"' | head -1 | cut -d'"' -f4
 
 # Show contract status from .env
 status:
@@ -80,7 +80,7 @@ verify:
 		exit 1; \
 	fi
 	@echo "🔍 Verifying contract at address: $(ADDRESS)"
-	@docker-compose exec tokenizer bash -c "source .env && forge verify-contract $(ADDRESS) code/src/Sneak42Token.sol:Sneak42Token \
+	@docker-compose exec tokenizer bash -c "source .env && forge verify-contract $(ADDRESS) code/src/Kicks42Token.sol:Kicks42Token \
 		--chain sepolia --etherscan-api-key \$$ETHERSCAN_API_KEY --watch"
 
 # Verify the last deployed contract automatically
@@ -92,7 +92,7 @@ verify-last:
 			exit 1; \
 		fi && \
 		echo '🔍 Verifying contract at address:' \$$CONTRACT_ADDRESS && \
-		forge verify-contract \$$CONTRACT_ADDRESS code/src/Sneak42Token.sol:Sneak42Token \
+		forge verify-contract \$$CONTRACT_ADDRESS code/src/Kicks42Token.sol:Kicks42Token \
 		--chain sepolia --etherscan-api-key \$$ETHERSCAN_API_KEY --watch"
 # Stop and remove containers
 down:
