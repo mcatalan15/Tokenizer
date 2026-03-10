@@ -1,0 +1,9 @@
+.env
+notes.md
+
+# Foundry
+cache/
+out/
+broadcast/
+lib/
+foundry.lock
