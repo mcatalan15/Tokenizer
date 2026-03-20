@@ -1,12 +1,13 @@
 [profile.default]
 src = 'code/src'
 test = 'code/tests'
-script = 'deployment/scripts'
+script = 'deployment/script'
 out = 'out'
 libs = ['lib']
 remappings = [
     '@openzeppelin/contracts=lib/openzeppelin-contracts/contracts',
-    'src/=code/src/'
+    "bonus=bonus/src",
+    "src=code/src"
 ]
 solc_version = '0.8.20'
 optimizer = true
