@@ -1,21 +1,3 @@
-# Tokenizer Project
-
-A smart contract development project using Docker, Foundry, and Solidity to create and deploy ERC-20 tokens.
-
-## Project Architecture
-
-This project uses a dockerized setup with Foundry to develop, test, and deploy token smart contracts. The main smart contract is `Kicks42Token`, a customized ERC-20 token.
-
-### Technologies Used
-
-- **Docker & Docker Compose**: Containerized development environment
-- **Foundry**: Framework for Solidity smart contract development
-- **OpenZeppelin**: Library of secure and audited contracts
-- **Ethereum Sepolia**: Test network for deployment
-
-
-
-
 # Kicks42Token - Tokenizer Project
 This project implements a simple ERC-20 token called Kicks42Token (ticker:K42T) as part of the 42/BNB Chain Tokenizer project. The token represents a loyalty points system for a sneakers reselling community, rewarding members for activities like trades, listings, and referrals. Points can be redeemed for perks such as priority acces to drops or fee discounts. The implementation uses a fixed supply of 10,000,000 tokens, all minted to the deployer upon creation for controlled distribution.
 
