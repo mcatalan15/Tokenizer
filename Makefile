@@ -48,18 +48,22 @@ test:
 # ====================== MANDATORY PART ======================
 deploy-mandatory:
 	@echo "🚀 Deploying MANDATORY (Kicks42Token)..."
-	@docker-compose exec tokenizer bash -c "source .env && forge script deployment/script/DeployKicks42Token.s.sol:DeployKicks42Token \
-		--rpc-url '\$$SEPOLIA_RPC_URL' \
-		--private-key '\$$PRIVATE_KEY' \
-		--broadcast -vvvv"
+	@docker-compose exec tokenizer bash -c ' \
+		source .env && \
+		forge script deployment/script/DeployKicks42Token.s.sol:DeployKicks42Token \
+			--rpc-url "$$SEPOLIA_RPC_URL" \
+			--private-key "$$PRIVATE_KEY" \
+			--broadcast -vvvv'
 
 # ====================== BONUS PART ======================
 deploy-bonus:
 	@echo "🚀 Deploying BONUS (Token + Multisig 2/3)..."
-	@docker-compose exec tokenizer bash -c "source .env && forge script bonus/script/DeployWithMultisig.s.sol:DeployWithMultisig \
-		--rpc-url '\$$SEPOLIA_RPC_URL' \
-		--private-key '\$$PRIVATE_KEY' \
-		--broadcast -vvvv"
+	@docker-compose exec tokenizer bash -c ' \
+		source .env && \
+		forge script bonus/script/DeployWithMultisig.s.sol:DeployWithMultisig \
+			--rpc-url "$$SEPOLIA_RPC_URL" \
+			--private-key "$$PRIVATE_KEY" \
+			--broadcast -vvvv'
 
 # ====================== VERIFICATION ======================
 verify:

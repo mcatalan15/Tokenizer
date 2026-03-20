@@ -18,6 +18,33 @@ Kicks42Token is a standard ERC-20 token deployed on the Ethereum Sepolia testnet
 - Sepolia test ETH (from faucets like Alchemy or Chainlink).
 - Environment variables in `.env` (see `deployment/.env.example`): PRIVATE_KEY, SEPOLIA_RPC_URL, ETHERSCAN_API_KEY.
 
+## Project Structure
+
+```bash
+Tokenizer/
+├── bonus/
+│   ├── script/
+│   │   └── DeployWithMultisig.s.sol    # Bonus deployment (Token + Multisig)
+│   └── src/
+│       └── Multisig.sol                # 2-of-3 Multisig contract
+├── code/
+│   ├── src/
+│   │   └── Kicks42Token.sol            # Main ERC-20 token
+│   └── tests/
+│       └── Kicks42Token.t.sol          # Unit tests
+├── deployment/
+│   └── script/
+│       └── DeployKicks42Token.s.sol    # Mandatory deployment script
+├── documentation/
+│   ├── usage.md
+│   └── whitepaper.md
+├── Makefile                            # Project management commands
+├── docker-compose.yml                  # Docker configuration
+├── Dockerfile                          # Development container image
+├── foundry.toml                        # Foundry config file
+└── README.md
+```
+
 ## Setup & Development
 
 ### Initial Setup
@@ -62,7 +89,7 @@ Kicks42Token is a standard ERC-20 token deployed on the Ethereum Sepolia testnet
     ```bash
     make shell
     ```
-### Sepolia Deployment
+### Mandatory Deployment
 
 1. **Deploy contract:**
     ```bash
@@ -86,6 +113,25 @@ Kicks42Token is a standard ERC-20 token deployed on the Ethereum Sepolia testnet
     # Or verify a specific contract
     make verify ADDRESS=0x435767284620b56ae037d8a9c4a9cccb882bd7aa
     ```
+
+### Bonus: Multisignature System (2-of-3)
+
+After running `make deploy-bonus`, the token ownership is transferred to the Multisig contract. No single person can perform privileged actions anymore.
+
+#### Demo Commands (Multisig)
+
+```bash
+# 1. Submit a transaction (example: renounce ownership)
+cast send $MULTISIG_ADDRESS "submitTransaction(address,uint256,bytes)" \
+  $CONTRACT_ADDRESS 0 "0x715018a6" \
+  --private-key $PRIVATE_KEY --rpc-url $SEPOLIA_RPC_URL
+
+# 2. Second owner confirms (repeat with another private key)
+cast send $MULTISIG_ADDRESS "confirmTransaction(uint256)" <TX_ID> \
+  --private-key $PRIVATE_KEY2 --rpc-url $SEPOLIA_RPC_URL
+```
+
+Once 2 owners confirm, the transaction executes automatically.
 
 ### Utility Commands
 
@@ -121,148 +167,25 @@ Kicks42Token is a standard ERC-20 token deployed on the Ethereum Sepolia testnet
     make re
     ```
 
-## Minimalist Demo Actions
+## Mandatory Demo Actions (No needed if using Make)
 Use Foundry's `cast` tool (inside container) to interact with the deployment contract.
 - **Check Total Suply:**
-```bash
-cast call 0xB2E3C1A70FbdDF0CE253aD335072b85fEA3FBdDc "totalSupply()(uint256)" --rpc-url $SEPOLIA_RPC_URL
-```
+    ```bash
+    cast call $CONTRACT_ADDRESS "totalSupply()(uint256)" --rpc-url $SEPOLIA_RPC_URL
+    ```
 - **Check Balance:**
-```bash
-cast call 0xB2E3C1A70FbdDF0CE253aD335072b85fEA3FBdDc "balanceOf(address)(uint256)" 0xd0Be4B40b5232852Af94F0d9B8D6d663ddDd590a --rpc-url $SEPOLIA_RPC_URL
-```
+    ```bash
+    cast call $CONTRACT_ADDRESS "balanceOf(address)(uint256)" 0xd0Be4B40b5232852Af94F0d9B8D6d663ddDd590a --rpc-url $SEPOLIA_RPC_URL
+    ```
 - **Transfer Tokens (from deployer):**
-```bash
-cast send 0xB2E3C1A70FbdDF0CE253aD335072b85fEA3FBdDc "transfer(address,uint256)" 0xRecipientAddress 1000000000000000000000 --private-key $PRIVATE_KEY --rpc-url $SEPOLIA_RPC_URL
-```
+    ```bash
+    cast send $CONTRACT_ADDRESS "transfer(address,uint256)" 0xRecipientAddress 1000000000000000000000 --private-key $PRIVATE_KEY --rpc-url $SEPOLIA_RPC_URL
+    ```
 - **Check Ownership:**
-```bash
-cast call 0xB2E3C1A70FbdDF0CE253aD335072b85fEA3FBdDc "owner()(address)" --rpc-url $SEPOLIA_RPC_URL
-```
+    ```bash
+    cast call $CONTRACT_ADDRESS "owner()(address)" --rpc-url $SEPOLIA_RPC_URL
+    ```
 - **Renounce Ownership (demostrates privileges; irreversible):**
-```bash
-cast call 0xB2E3C1A70FbdDF0CE253aD335072b85fEA3FBdDc "owner()(address)" --rpc-url $SEPOLIA_RPC_URL
-```
-These actions demostrate the token's operation, security aspects, and compliance with project requirements.
-
-### 🚀 Container Management
-
-| Command | Description |
-|---------|-------------|
-| `make build` | Build the Docker image for the project |
-| `make up` | Start the container in detached mode |
-| `make shell` | Connect to the running container (bash) |
-| `make down` | Stop and remove containers |
-| `make logs` | Show container logs |
-
-### 📦 Dependency Management
-
-| Command | Description |
-|---------|-------------|
-| `make install-deps` | Install OpenZeppelin contracts |
-| `make exec CMD="command"` | Execute a custom command in the container |
-
-### 🔨 Development
-
-| Command | Description |
-|---------|-------------|
-| `make build-contracts` | Compile smart contracts |
-| `make test` | Run tests with verbose output |
-
-### 🌐 Deployment and Verification
-
-| Command | Description |
-|---------|-------------|
-| `make deploy-sepolia` | Deploy contract to Sepolia and update .env |
-| `make get-address` | Get the last deployed contract address |
-| `make status` | Show contract status from .env |
-| `make verify ADDRESS=0x...` | Verify a specific contract on Etherscan |
-| `make verify-last` | Automatically verify the last deployed contract |
-
-### 🧹 Cleanup
-
-| Command | Description |
-|---------|-------------|
-| `make clean` | Stop and remove containers |
-| `make fclean` | Full cleanup (containers, images, and volumes) |
-| `make re` | Rebuild from scratch (fclean + build + up) |
-
-## Usage Guide
-
-
-
-
-
-
-
-
-
-## Project Structure
-
-```
-Tokenizer/
-├── Makefile                 # Project management commands
-├── docker-compose.yml      # Docker configuration
-├── Dockerfile              # Development container image
-├── .env                     # Environment variables (not included in Git)
-├── README.md               # This file
-├── code/
-│   ├── src/
-│   │   └── Kicks42Token.sol # Main smart contract
-│   └── tests/
-│       └── Kicks42Token.t.sol # Contract tests
-├── deployment/
-│   └── script/
-│       └── DeployKicks42Token.s.sol # Deployment script
-└── broadcast/               # Deployment history (auto-generated)
-```
-
-## Environment Variables
-
-Create a `.env` file in the project root with the following variables:
-
-```bash
-# Required for deployment
-PRIVATE_KEY=your_ethereum_private_key
-SEPOLIA_RPC_URL=https://sepolia.infura.io/v3/your_project_id
-ETHERSCAN_API_KEY=your_etherscan_api_key
-
-# Auto-generated by deployment
-CONTRACT_ADDRESS=deployed_contract_address
-```
-
-## Important Notes
-
-- The `.env` file must be configured before deployment
-- The project uses Sepolia testnet by default
-- Contract addresses are automatically stored in `.env`
-- Deployment logs are saved in the `broadcast/` directory
-- All commands run inside Docker containers for consistency
-- The Makefile provides a complete workflow from development to deployment
-
-## Quick Start
-
-```bash
-# 1. Setup environment
-make build && make up
-
-# 2. Install dependencies
-make install-deps
-
-# 3. Build and test
-make build-contracts && make test
-
-# 4. Deploy to Sepolia (ensure .env is configured)
-make deploy-sepolia
-
-# 5. Verify on Etherscan
-make verify-last
-```
-
-## Troubleshooting
-
-- **Container issues**: Try `make re` to rebuild from scratch
-- **Deployment failures**: Check your `.env` configuration
-- **Test failures**: Use `make shell` to debug inside the container
-- **Verification issues**: Ensure your Etherscan API key is valid
-
+    ```bash
+    cast call $CONTRACT_ADDRESS "owner()(address)" --rpc-url $SEPOLIA_RPC_URL
+    ```
