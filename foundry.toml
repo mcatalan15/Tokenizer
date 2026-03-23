@@ -1,6 +1,6 @@
 [profile.default]
 src = 'code/src'
-test = 'code/tests'
+test = ['code/tests', 'bonus/tests']
 script = 'deployment/script'
 out = 'out'
 libs = ['lib']

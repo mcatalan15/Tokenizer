@@ -65,6 +65,12 @@ deploy-bonus:
 			--private-key "$$PRIVATE_KEY" \
 			--broadcast -vvvv'
 
+test-bonus:
+	@echo "🧪 Running BONUS Fork Tests (Multisig + Token)..."
+	@docker-compose exec tokenizer bash -c ' \
+		source .env && \
+		forge test bonus/tests/MultisigBonus.t.sol -vvv'
+
 # ====================== VERIFICATION ======================
 verify:
 	@docker-compose exec tokenizer bash -c "source .env && forge verify-contract $(ADDRESS) $(PATH):$(NAME) \
