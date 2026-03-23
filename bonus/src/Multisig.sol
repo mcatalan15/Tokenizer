@@ -23,13 +23,13 @@ contract Multisig {
 
     modifier onlyOwner() {
         bool isOwner = false;
-        for (uint i = 0; i < owners.lenght; i++) {
+        for (uint i = 0; i < owners.length; i++) {
             if (owners[i] == msg.sender) {
                 isOwner = true;
                 break;
             }
         }
-        require(isOwner, "Not and owner");
+        require(isOwner, "Not an owner");
         _;
     }
 
@@ -39,10 +39,7 @@ contract Multisig {
         requiredSignatures = _required;
     }
 
-    function submitTransaction(address _destination, uint256 _value, bytes memory _data)
-        external
-        onlyOwner
-        returns(uint256)
+    function submitTransaction(address _destination, uint256 _value, bytes memory _data) external onlyOwner returns(uint256)
     {
         uint256 txId = transactionCount;
         transactions.push(Transaction({
@@ -58,7 +55,7 @@ contract Multisig {
         return txId;
     }
 
-    function confirmTransaction(uint256 _txId) external onlyOwner {
+    function confirmTransaction(uint256 _txId) public onlyOwner {
         require(!transactions[_txId].executed, "Already executed");
         confirmations[_txId][msg.sender] = true;
         emit TransactionConfirmed(_txId, msg.sender);
@@ -78,7 +75,7 @@ contract Multisig {
 
     function getConfirmationCount(uint256 _txId) public view returns (uint256) {
         uint256 count = 0;
-        for (uint i = 0; i < owners.lenght; i++) {
+        for (uint i = 0; i < owners.length; i++) {
             if (confirmations[_txId][owners[i]])
                 count++;
         }

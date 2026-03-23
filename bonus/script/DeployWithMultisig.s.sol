@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-import "forge-std/Script.sol";
+import {Script} from "forge-std/Script.sol";
 import {Kicks42Token} from "src/Kicks42Token.sol";
-import {Multisig} from "bonus/src/Multisig.sol";
+import {Multisig} from "bonus/Multisig.sol";
 
 contract DeployWithMultisig is Script {
     function run() external {

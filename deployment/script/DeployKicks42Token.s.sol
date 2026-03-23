@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-import "forge-std/Script.sol";
-import "../../code/src/Kicks42Token.sol";
+import {Script} from "forge-std/Script.sol";
+import {Kicks42Token} from "../../code/src/Kicks42Token.sol";
 
 contract DeployKicks42Token is Script {
     function run() external {
