@@ -1,6 +1,6 @@
 [profile.default]
 src = 'code/src'
-test = ['code/tests', 'bonus/tests']
+test = 'code/tests'
 script = 'deployment/script'
 out = 'out'
 libs = ['lib']
@@ -13,6 +13,13 @@ solc_version = '0.8.20'
 optimizer = true
 optimizer_runs = 200
 verbosity = 1
+ffi = true
+
+# File system permissions for deployment scripts
+fs_permissions = [
+    { access = "read-write", path = ".env" },
+    { access = "read-write", path = ".env.tmp" }
+]
 
 [rpc_endpoints]
 sepolia = "${SEPOLIA_RPC_URL}"

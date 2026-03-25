@@ -55,6 +55,33 @@ deploy-mandatory:
 			--private-key "$$PRIVATE_KEY" \
 			--broadcast -vvvv'
 
+# ====================== TRANSFER MANDATORY TOKENS ======================
+transfer-mandatory:
+	@echo "🚀 Preparing to transfer Kicks42Token..."
+	@docker-compose exec tokenizer bash -c ' \
+		source .env && \
+		if [ -z "$$CONTRACT_ADDRESS" ]; then \
+			echo "❌ CONTRACT_ADDRESS not found in .env!"; \
+			echo "   Please run: make deploy-mandatory first"; \
+			exit 1; \
+		fi && \
+		if [ -z "$$WALLET_RECEIVER" ]; then \
+			echo "❌ WALLET_RECEIVER not found in .env!"; \
+			echo "   Add this line to .env:"; \
+			echo "   WALLET_RECEIVER=0xYourReceiverAddressHere"; \
+			exit 1; \
+		fi && \
+		echo "📍 Using Token Contract : $$CONTRACT_ADDRESS" && \
+		echo "📤 Sending 500 K42T to     : $$WALLET_RECEIVER" && \
+		cast send $$CONTRACT_ADDRESS \
+			"transfer(address,uint256)" \
+			$$WALLET_RECEIVER \
+			500000000000000000000 \
+			--private-key "$$PRIVATE_KEY" \
+			--rpc-url "$$SEPOLIA_RPC_URL" && \
+		echo "✅ Transfer successful!" && \
+		echo "🔗 Etherscan: https://sepolia.etherscan.io/token/$$CONTRACT_ADDRESS"'
+
 # ====================== BONUS PART ======================
 deploy-bonus:
 	@echo "🚀 Deploying BONUS (Token + Multisig 2/3)..."

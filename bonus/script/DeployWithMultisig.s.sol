@@ -28,5 +28,26 @@ contract DeployWithMultisig is Script {
         console.log("Kicks42Token:", address(token));
         console.log("Multisig (2/3):", address(multisig));
         console.log("Ownership transferred to Multisig");
+
+        // Save addresses to .env file for verification and future use
+        updateEnvVariable("TOKEN_ADDRESS", vm.toString(address(token)));
+        updateEnvVariable("MULTISIG_ADDRESS", vm.toString(address(multisig)));
+        // Also save CONTRACT_ADDRESS for consistency with mandatory deployment
+        updateEnvVariable("CONTRACT_ADDRESS", vm.toString(address(token)));
+    }
+
+    function updateEnvVariable(string memory key, string memory value) private {
+        // Use shell command to update the .env file properly
+        // This removes any existing line with the key and adds the new one
+        string[] memory cmd = new string[](3);
+        cmd[0] = "bash";
+        cmd[1] = "-c";
+        cmd[2] = string(abi.encodePacked(
+            "grep -v '^", key, "=' .env > .env.tmp && mv .env.tmp .env; ",
+            "echo '", key, "=", value, "' >> .env"
+        ));
+
+        vm.ffi(cmd);
+        console.log("Updated .env:", key, "=", value);
     }
 }
