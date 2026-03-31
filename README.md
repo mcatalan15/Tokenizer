@@ -89,6 +89,8 @@ make verify-bonus
 
 ## Documentation
 
+- **[Theory Explanation](documentation/THEORY_EXPLANATION.md)** – What is ERC-20 and Multisig? (start here!)
+- **[Code Explanation](CODE_EXPLANATION.md)** – Deep dive into the implementation details
 - **[Usage Guide](documentation/usage.md)** – Full commands, demos, and multisig usage
 - **[Whitepaper](documentation/whitepaper.md)** – Project explanation and vision
 

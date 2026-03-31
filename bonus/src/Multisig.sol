@@ -2,10 +2,10 @@
 pragma solidity ^0.8.20;
 
 contract Multisig {
-    address[] public owners;
-    uint256 public requiredSignatures;
+    address[] public owners; // List of owners that can sign transactions
+    uint256 public requiredSignatures; // How many signatures are required (2)
 
-    mapping(uint256 => mapping(address => bool)) public confirmations;
+    mapping(uint256 => mapping(address => bool)) public confirmations; // Maps 
     uint256 public transactionCount;
 
     struct Transaction {

@@ -9,11 +9,10 @@ contract DeployWithMultisig is Script {
     function run() external {
         vm.startBroadcast();
 
-        // 1. Deploy Multisig (2-of-3)
-        address[] memory owners = new address[](3);
-        owners[0] = msg.sender;
-        owners[1] = makeAddr("owner2");
-        owners[2] = makeAddr("owner3");
+        // 1. Deploy Multisig (2-of-2) using two actual available keys
+        address[] memory owners = new address[](2);
+        owners[0] = msg.sender;  // Owner from PRIVATE_KEY
+        owners[1] = 0xbe462fD16e537aAcF50bA131E813E1b3c4dfe009;  // Owner from SECOND_PRIVATE_KEY (WALLET_RECEIVER)
         Multisig multisig = new Multisig(owners, 2);
 
         // 2. Deploy Token (mandatory contract)
@@ -26,7 +25,8 @@ contract DeployWithMultisig is Script {
 
         console.log("=== BONUS DEPLOYMENT SUCCESS ===");
         console.log("Kicks42Token:", address(token));
-        console.log("Multisig (2/3):", address(multisig));
+        console.log("Multisig (2/2):", address(multisig));
+        console.log("Owners: Owner1 (deployer) and Owner2 (WALLET_RECEIVER)");
         console.log("Ownership transferred to Multisig");
 
         // Save addresses to .env file for verification and future use
