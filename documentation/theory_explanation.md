@@ -17,18 +17,18 @@ An **ERC-20 token** is a standardized digital asset on blockchain that:
 ### 📊 How ERC-20 Works: Visual Comparison
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│ Traditional Bank Account vs. ERC-20 Token                   │
-├─────────────────────────────────────────────────────────────┤
-│                                                             │
-│ BANK ACCOUNT:                    ERC-20 TOKEN:            │
-│  Controlled by: Bank              Controlled by: Blockchain
-│  Ledger: Private database          Ledger: Public (everyone sees)
-│  Trust required: HIGH              Trust required: LOW
-│  Speed: Hours/Days                 Speed: Minutes
-│  Custodian: Bank holds your money  Custodian: You hold your keys
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
+┌───────────────────────────────────────────────────────────────────┐
+│ Traditional Bank Account vs. ERC-20 Token                         │
+├───────────────────────────────────────────────────────────────────┤
+│                                                                   │
+│ BANK ACCOUNT:                    ERC-20 TOKEN:                    │
+│  Controlled by: Bank              Controlled by: Blockchain       │
+│  Ledger: Private database          Ledger: Public (everyone sees) │
+│  Trust required: HIGH              Trust required: LOW            │
+│  Speed: Hours/Days                 Speed: Minutes                 │
+│  Custodian: Bank holds your money  Custodian: You hold your keys  │
+│                                                                   │
+└───────────────────────────────────────────────────────────────────┘
 ```
 
 ### 💡 Real-World Example: Kicks42Token (K42T)
@@ -74,24 +74,24 @@ After creation (Deployer has all 10M):
 ┌────────────────────────────────────────────┐
 │ Account              │ Balance             │
 ├────────────────────────────────────────────┤
-│ Deployer             │ 10,000,000 K42T    │
+│ Deployer             │ 10,000,000 K42T     │
 │ Alice                │ 0 K42T              │
 │ Bob                  │ 0 K42T              │
 │ Carol                │ 0 K42T              │
 ├────────────────────────────────────────────┤
-│ TOTAL                │ 10,000,000 K42T    │
+│ TOTAL                │ 10,000,000 K42T     │
 └────────────────────────────────────────────┘
 
 After Deployer transfers 100 K42T to Alice:
 ┌────────────────────────────────────────────┐
 │ Account              │ Balance             │
 ├────────────────────────────────────────────┤
-│ Deployer             │ 9,999,900 K42T     │
+│ Deployer             │ 9,999,900 K42T      │
 │ Alice                │ 100 K42T            │
 │ Bob                  │ 0 K42T              │
 │ Carol                │ 0 K42T              │
 ├────────────────────────────────────────────┤
-│ TOTAL                │ 10,000,000 K42T    │
+│ TOTAL                │ 10,000,000 K42T     │
 └────────────────────────────────────────────┘
 ```
 
@@ -138,25 +138,25 @@ A **Multisig** is a smart contract that requires **multiple people to approve** 
 ```
 SINGLE OWNER (RISKY):
   ┌──────────────────────────────────┐
-  │ Token Owned by: Alice             │
+  │ Token Owned by: Alice            │
   ├──────────────────────────────────┤
-  │ Alice's private key stolen?       │
-  │ → Attacker has ALL tokens!        │
-  │ → Alice can't stop them           │
-  │ Risk Level: 🔴 CRITICAL           │
+  │ Alice's private key stolen?      │
+  │ → Attacker has ALL tokens!       │
+  │ → Alice can't stop them          │
+  │ Risk Level: 🔴 CRITICAL          │
   └──────────────────────────────────┘
 
 MULTISIG 2/3 (SAFER):
   ┌──────────────────────────────────┐
-  │ Token Owned by: Multisig           │
-  │ Signers: Alice, Bob, Carol         │
-  │ Threshold: Need 2/3 approvals      │
+  │ Token Owned by: Multisig         │
+  │ Signers: Alice, Bob, Carol       │
+  │ Threshold: Need 2/3 approvals    │
   ├──────────────────────────────────┤
-  │ Alice's key stolen?               │
-  │ → Attacker needs 1 more key       │
-  │ → Bob & Carol can see the threat  │
-  │ → Carol can refuse approval       │
-  │ Risk Level: 🟡 LOW                │
+  │ Alice's key stolen?              │
+  │ → Attacker needs 1 more key      │
+  │ → Bob & Carol can see the threat │
+  │ → Carol can refuse approval      │
+  │ Risk Level: 🟡 LOW               │
   └──────────────────────────────────┘
 ```
 
@@ -189,13 +189,13 @@ Step 2️⃣ - CONFIRM (Carol)
 
 Step 3️⃣ - EXECUTE (Automatic)
   Multisig sends 500 K42T to Alice
-  ┌────────────────────────────────┐
-  │ TRANSACTION COMPLETED           │
-  │ From: Multisig Contract         │
-  │ To:   Alice's Wallet            │
-  │ Amount: 500 K42T                │
-  │ Status: ✅ CONFIRMED on Blockchain
-  └────────────────────────────────┘
+  ┌─────────────────────────────────────┐
+  │ TRANSACTION COMPLETED               │
+  │ From: Multisig Contract             │
+  │ To:   Alice's Wallet                │
+  │ Amount: 500 K42T                    │
+  │ Status: ✅ CONFIRMED on Blockchain  │
+  └─────────────────────────────────────┘
 ```
 
 ### 🎯 Key Multisig Scenarios
@@ -245,23 +245,23 @@ Scenario D: Bob & Carol Approve
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│           Multisig Transaction Lifecycle               │
+│           Multisig Transaction Lifecycle                │
 ├─────────────────────────────────────────────────────────┤
 │                                                         │
-│   PROPOSED                PENDING                      │
+│   PROPOSED                PENDING                       │
 │     ↓                       ↓                           │
-│  Owner1 submits ──→ Waiting for confirmations          │
-│  (1/2 votes)        (0/1 vote needed)                  │
-│                       ↓                                │
-│                   CONFIRMED                            │
+│  Owner1 submits ──→ Waiting for confirmations           │
+│  (1/2 votes)        (0/1 vote needed)                   │
+│                       ↓                                 │
+│                   CONFIRMED                             │
 │                     ↓                                   │
-│                  Owner2 approves → Threshold reached   │
+│                  Owner2 approves → Threshold reached    │
 │                  (2/2 votes)                            │
 │                     ↓                                   │
-│                   EXECUTED                             │
+│                   EXECUTED                              │
 │                     ↓                                   │
-│              Action took effect                        │
-│              Token transfer complete                   │
+│              Action took effect                         │
+│              Token transfer complete                    │
 │                                                         │
 └─────────────────────────────────────────────────────────┘
 ```
@@ -308,7 +308,7 @@ Our Implementation: 2-of-3
 │ × Eve           │   │ × Eve       │    │ √ Eve        │
 ├─────────────────┤   ├─────────────┤    ├──────────────┤
 │ Need 2 of 3 ✓   │   │ Need 2 of 2 │    │ Need 3 of 5  │
-│ More flexible   │   │ All must OK  │    │ More secure  │
+│ More flexible   │   │ All must OK │    │ More secure  │
 │ Medium security │   │ High secure │    │ Most secure  │
 └─────────────────┘   └─────────────┘    └──────────────┘
 ```

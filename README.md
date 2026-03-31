@@ -64,12 +64,14 @@ Tokenizer/
 │   └── script/
 │       └── DeployKicks42Token.s.sol    # Mandatory deployment script
 ├── documentation/
+│   ├── code_explanation
+│   ├── theory_explanation
 │   ├── usage.md
 │   └── whitepaper.md
-├── Makefile                            # Project management commands
 ├── docker-compose.yml                  # Docker configuration
 ├── Dockerfile                          # Development container image
 ├── foundry.toml                        # Foundry config file
+├── Makefile                            # Project management commands
 └── README.md
 ```
 
@@ -97,4 +99,4 @@ make verify-bonus
 ---
 
 **Made with ❤️ using Solidity, Foundry, Docker & OpenZeppelin**  
-42 School × BNB Chain Tokenizer Project
+
