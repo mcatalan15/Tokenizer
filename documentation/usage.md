@@ -3,8 +3,8 @@
 ## 📚 Documentation Navigation
 
 **New to the project?**
-- Start here: [Theory Explanation](THEORY_EXPLANATION.md) – Learn what ERC-20 and Multisig are
-- Then read: [Code Explanation](../CODE_EXPLANATION.md) – Understand how the code works
+- Start here: [Theory Explanation](theory_explanation.md) – Learn what ERC-20 and Multisig are
+- Then read: [Code Explanation](../code_explanation.md) – Understand how the code works
 
 **Just want to deploy?**
 - Follow this guide!
@@ -136,7 +136,7 @@ Tokenizer/
 
 After running `make deploy-bonus`, the token ownership is transferred to the Multisig contract. No single person can perform privileged actions anymore.
 
-**Not familiar with Multisig?** → [Read Theory Explanation](THEORY_EXPLANATION.md#part-2-what-is-a-multisig-multisignature-wallet)
+**Not familiar with Multisig?** → [Read Theory Explanation](theory_explanation.md#part-2-what-is-a-multisig-multisignature-wallet)
 
 #### Setup
 
@@ -244,8 +244,8 @@ This runs tests that verify:
 
 | Topic | File | Description |
 |-------|------|-------------|
-| **Concepts** | [THEORY_EXPLANATION.md](THEORY_EXPLANATION.md) | What is ERC-20? What is Multisig? Real examples |
-| **Code Details** | [../CODE_EXPLANATION.md](../CODE_EXPLANATION.md) | How each function works, line-by-line breakdown |
+| **Concepts** | [theory_explanation.md](theory_explanation.md) | What is ERC-20? What is Multisig? Real examples |
+| **Code Details** | [../code_explanation.md](../code_explanation.md) | How each function works, line-by-line breakdown |
 | **Project Vision** | [whitepaper.md](whitepaper.md) | Why this project exists, use cases |
 | **Deployment** | This file (usage.md) | Step-by-step commands to deploy |
 
