@@ -47,6 +47,8 @@ Tokenizer/
 │   └── script/
 │       └── DeployKicks42Token.s.sol    # Mandatory deployment script
 ├── documentation/
+│   ├── code_explanation.md
+│   ├── theory_explanation.md
 │   ├── usage.md
 │   └── whitepaper.md
 ├── Makefile                            # Project management commands
@@ -67,10 +69,21 @@ Tokenizer/
 
 2. **Configure environment variables:**
     ```bash
-    # Create .env file
-    PRIVATE_KEY=your_private_key_here
-    SEPOLIA_RPC_URL=https://sepolia.infura.io/v3/your_infura_key
-    ETHERSCAN_API_KEY=your_etherscan_api_key
+    cp .env.example .env && vim .env
+    ```
+    ```bash
+    # Modify values for your private kays, APIs and addresses
+    # URLs
+    SEPOLIA_RPC_URL=your_sepole_rpc_node_url
+
+    # Private Keys
+    PRIVATE_KEY=your_wallet_private_key_with_ETH_sepolia_testnet_tokens
+    ETHERSCAN_API_KEY=your_ethersan_API_key
+    SECOND_PRIVATE_KEY=your_second_wallet_private_key_with_ETH_sepolia_testnet_tokens
+
+    # Address Wallets
+    WALLET_ADDRESS=your_wallet_address
+    WALLET_RECEIVER=your_wallet_receiver_address
     ```
 
 3. **Build and start environment:**
