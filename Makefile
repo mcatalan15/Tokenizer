@@ -71,8 +71,8 @@ transfer-mandatory:
 			echo "   WALLET_RECEIVER=0xYourReceiverAddressHere"; \
 			exit 1; \
 		fi && \
-		echo "📍 Using Token Contract : $$CONTRACT_ADDRESS" && \
-		echo "📤 Sending 500 K42T to     : $$WALLET_RECEIVER" && \
+		echo "📍 Using Token Contract: $$CONTRACT_ADDRESS" && \
+		echo "📤 Sending 500 K42T to: $$WALLET_RECEIVER" && \
 		cast send $$CONTRACT_ADDRESS \
 			"transfer(address,uint256)" \
 			$$WALLET_RECEIVER \

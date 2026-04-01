@@ -17,18 +17,18 @@ An **ERC-20 token** is a standardized digital asset on blockchain that:
 ### 📊 How ERC-20 Works: Visual Comparison
 
 ```
-┌───────────────────────────────────────────────────────────────────┐
-│ Traditional Bank Account vs. ERC-20 Token                         │
-├───────────────────────────────────────────────────────────────────┤
-│                                                                   │
-│ BANK ACCOUNT:                    ERC-20 TOKEN:                    │
-│  Controlled by: Bank              Controlled by: Blockchain       │
-│  Ledger: Private database          Ledger: Public (everyone sees) │
-│  Trust required: HIGH              Trust required: LOW            │
-│  Speed: Hours/Days                 Speed: Minutes                 │
-│  Custodian: Bank holds your money  Custodian: You hold your keys  │
-│                                                                   │
-└───────────────────────────────────────────────────────────────────┘
+┌───────────────────────────────────────────────────────────────────────┐
+│ Traditional Bank Account vs. ERC-20 Token                             │
+├───────────────────────────────────────────────────────────────────────┤
+│                                                                       │
+│ BANK ACCOUNT:                       ERC-20 TOKEN:                     │
+│  Controlled by: Bank                  Controlled by: Blockchain       │
+│  Ledger: Private database             Ledger: Public (everyone sees)  │
+│  Trust required: HIGH                 Trust required: LOW             │
+│  Speed: Hours/Days                    Speed: Minutes                  │
+│  Custodian: Bank holds your money     Custodian: You hold your keys   │
+│                                                                       │
+└───────────────────────────────────────────────────────────────────────┘
 ```
 
 ### 💡 Real-World Example: Kicks42Token (K42T)
@@ -42,14 +42,14 @@ SETUP:
   • Deployer owns them initially
 
 DISTRIBUTION:
-  Alice trades a sneaker → earns 100 K42T
-  Bob refers a friend → earns 500 K42T
-  Carol lists 5 items → earns 50 K42T
+  Anna trades a sneaker → earns 100 K42T
+  Pau refers a friend → earns 500 K42T
+  Mar lists 5 items → earns 50 K42T
 
 USAGE:
-  Alice: "I have 100 K42T, I can get priority drop access"
-  Bob:   "I have 500 K42T, I get fee discount!"
-  Carol: "I have 50 K42T, save up for perks"
+  Anna: "I have 100 K42T, I can get priority drop access"
+  Pau:   "I have 500 K42T, I get fee discount!"
+  Mar: "I have 50 K42T, save up for perks"
 
 REDEMPTION:
   100 K42T → 5% marketplace fee discount
@@ -61,8 +61,8 @@ REDEMPTION:
 
 | Function | What It Does | Example |
 |----------|--------------|---------|
-| `balanceOf(address)` | Check how much you own | `balanceOf(Alice)` → 100 K42T |
-| `transfer(to, amount)` | Send tokens to someone | `transfer(Bob, 50)` → Send 50 K42T to Bob |
+| `balanceOf(address)` | Check how much you own | `balanceOf(Anna)` → 100 K42T |
+| `transfer(to, amount)` | Send tokens to someone | `transfer(Pau, 50)` → Send 50 K42T to Pau |
 | `approve(spender, amount)` | Allow someone to spend your tokens | Smart contract can move 1000 K42T on your behalf |
 | `transferFrom(from, to, amount)` | Spend someone's approved tokens | Contract transfers your approved tokens |
 | `totalSupply()` | Total tokens ever created | `totalSupply()` → 10,000,000 K42T |
@@ -75,21 +75,21 @@ After creation (Deployer has all 10M):
 │ Account              │ Balance             │
 ├────────────────────────────────────────────┤
 │ Deployer             │ 10,000,000 K42T     │
-│ Alice                │ 0 K42T              │
-│ Bob                  │ 0 K42T              │
-│ Carol                │ 0 K42T              │
+│ Anna                 │ 0 K42T              │
+│ Pau                  │ 0 K42T              │
+│ Mar                  │ 0 K42T              │
 ├────────────────────────────────────────────┤
 │ TOTAL                │ 10,000,000 K42T     │
 └────────────────────────────────────────────┘
 
-After Deployer transfers 100 K42T to Alice:
+After Deployer transfers 100 K42T to Anna:
 ┌────────────────────────────────────────────┐
 │ Account              │ Balance             │
 ├────────────────────────────────────────────┤
 │ Deployer             │ 9,999,900 K42T      │
-│ Alice                │ 100 K42T            │
-│ Bob                  │ 0 K42T              │
-│ Carol                │ 0 K42T              │
+│ Anna                 │ 100 K42T            │
+│ Pau                  │ 0 K42T              │
+│ Mar                  │ 0 K42T              │
 ├────────────────────────────────────────────┤
 │ TOTAL                │ 10,000,000 K42T     │
 └────────────────────────────────────────────┘
@@ -138,24 +138,24 @@ A **Multisig** is a smart contract that requires **multiple people to approve** 
 ```
 SINGLE OWNER (RISKY):
   ┌──────────────────────────────────┐
-  │ Token Owned by: Alice            │
+  │ Token Owned by: Anna             │
   ├──────────────────────────────────┤
-  │ Alice's private key stolen?      │
+  │ Anna's private key stolen?       │
   │ → Attacker has ALL tokens!       │
-  │ → Alice can't stop them          │
+  │ → Anna can't stop them           │
   │ Risk Level: 🔴 CRITICAL          │
   └──────────────────────────────────┘
 
 MULTISIG 2/3 (SAFER):
   ┌──────────────────────────────────┐
   │ Token Owned by: Multisig         │
-  │ Signers: Alice, Bob, Carol       │
+  │ Signers: Anna, Pau, Mar          │
   │ Threshold: Need 2/3 approvals    │
   ├──────────────────────────────────┤
-  │ Alice's key stolen?              │
+  │ Anna's key stolen?               │
   │ → Attacker needs 1 more key      │
-  │ → Bob & Carol can see the threat │
-  │ → Carol can refuse approval      │
+  │ → Pau & Mar can see the threat   │
+  │ → Mar can refuse approval        │
   │ Risk Level: 🟡 LOW               │
   └──────────────────────────────────┘
 ```
@@ -163,36 +163,36 @@ MULTISIG 2/3 (SAFER):
 ### 📋 How Multisig Works: Step-by-Step
 
 ```
-EXAMPLE: Transfer 500 K42T to Alice
+EXAMPLE: Transfer 500 K42T to Anna
 
-Step 1️⃣ - PROPOSE (Bob)
-  Bob submits: "Transfer 500 K42T to Alice"
-  Status: 1/2 approvals (Bob auto-votes YES)
+Step 1️⃣ - PROPOSE (Pau)
+  Pau submits: "Transfer 500 K42T to Anna"
+  Status: 1/2 approvals (Pau auto-votes YES)
   ┌────────────────────────────────┐
   │ Proposal: Transfer 500 K42T    │
-  │ ✅ Bob: YES                    │
-  │ ❓ Carol: Waiting...           │
-  │ ❌ Alice: Not ready            │
+  │ ✅ Pau: YES                    │
+  │ ❓ Mar: Waiting...             │
+  │ ❌ Anna: Not ready             │
   └────────────────────────────────┘
 
-Step 2️⃣ - CONFIRM (Carol)
-  Carol reviews & votes YES
+Step 2️⃣ - CONFIRM (Mar)
+  Mar reviews & votes YES
   Status: 2/2 approvals ✅ THRESHOLD REACHED!
   ┌────────────────────────────────┐
   │ Proposal: Transfer 500 K42T    │
-  │ ✅ Bob: YES                    │
-  │ ✅ Carol: YES                  │
-  │ ❌ Alice: Not needed           │
+  │ ✅ Pau: YES                    │
+  │ ✅ Mar: YES                    │
+  │ ❌ Anna: Not needed            │
   │                                │
   │ 🔓 AUTO-EXECUTE!               │
   └────────────────────────────────┘
 
 Step 3️⃣ - EXECUTE (Automatic)
-  Multisig sends 500 K42T to Alice
+  Multisig sends 500 K42T to Anna
   ┌─────────────────────────────────────┐
   │ TRANSACTION COMPLETED               │
   │ From: Multisig Contract             │
-  │ To:   Alice's Wallet                │
+  │ To:   Anna's Wallet                 │
   │ Amount: 500 K42T                    │
   │ Status: ✅ CONFIRMED on Blockchain  │
   └─────────────────────────────────────┘
@@ -213,31 +213,31 @@ Step 3️⃣ - EXECUTE (Automatic)
 ```
 Our Kicks42Token Multisig: 2/3 Setup
 
-Owners: Alice, Bob, Carol
+Owners: Anna, Pau, Mar
 Required Signatures: 2 out of 3
 
-Scenario A: Alice & Bob Approve
-  ✅ Alice: YES
-  ✅ Bob: YES
-  ❌ Carol: NO
+Scenario A: Anna & Pau Approve
+  ✅ Anna: YES
+  ✅ Pau: YES
+  ❌ Mar: NO
   Result: 2/2 → EXECUTE ✓
 
-Scenario B: Alice & Carol Approve
-  ✅ Alice: YES
-  ❌ Bob: NO
-  ✅ Carol: YES
+Scenario B: Anna & Mar Approve
+  ✅ Anna: YES
+  ❌ Pau: NO
+  ✅ Mar: YES
   Result: 2/2 → EXECUTE ✓
 
-Scenario C: Only Alice Approves
-  ✅ Alice: YES
-  ❌ Bob: NO
-  ❌ Carol: NO
+Scenario C: Only Anna Approves
+  ✅ Anna: YES
+  ❌ Pau: NO
+  ❌ Mar: NO
   Result: 1/3 → BLOCKED ✗
 
-Scenario D: Bob & Carol Approve
-  ❌ Alice: NO
-  ✅ Bob: YES
-  ✅ Carol: YES
+Scenario D: Pau & Mar Approve
+  ❌ Anna: NO
+  ✅ Pau: YES
+  ✅ Mar: YES
   Result: 2/3 → EXECUTE ✓
 ```
 
@@ -278,8 +278,8 @@ BANK SAFE DEPOSIT BOX:
 
 MULTISIG (Same Concept!):
   □ Has 2 private keys
-  □ Alice holds Key A
-  □ Bob holds Key B
+  □ Anna holds Key A
+  □ Pau holds Key B
   □ Both signatures needed for transactions
   □ Neither person can steal funds alone
 ```
@@ -301,9 +301,9 @@ Our Implementation: 2-of-3
 
 2-of-3:                 2-of-2:              3-of-5:
 ┌─────────────────┐   ┌─────────────┐    ┌──────────────┐
-│ √ Alice         │   │ √ Alice     │    │ √ Alice      │
-│ √ Bob           │   │ √ Bob       │    │ √ Bob        │
-│ × Carol         │   │ × Carol     │    │ √ Carol      │
+│ √ Anna         │   │ √ Anna     │    │ √ Anna      │
+│ √ Pau           │   │ √ Pau       │    │ √ Pau        │
+│ × Mar         │   │ × Mar     │    │ √ Mar      │
 │ × Diana         │   │ × Diana     │    │ √ Diana      │
 │ × Eve           │   │ × Eve       │    │ √ Eve        │
 ├─────────────────┤   ├─────────────┤    ├──────────────┤
@@ -327,7 +327,7 @@ Step 1: Deploy Token
   → Deployer owns token contract
 
 Step 2: Deploy Multisig (2/3)
-  → Alice, Bob, Carol are owners
+  → Anna, Pau, Mar are owners
   → Any 2 can approve actions
 
 Step 3: CRITICAL - Transfer Ownership
@@ -352,16 +352,16 @@ Normal (Risky):
      ❌ Risk: Deployer goes rogue
 
 With Multisig (Safe):
-  Step 1: Bob submits "Transfer 1000 to fund"
+  Step 1: Pau submits "Transfer 1000 to fund"
     └─ Data: 0xa90...  (encoded function call)
     └─ TO: Token contract
     └─ VALUE: 0
     └─ Returns: txId = 0
 
-  Step 2: Carol confirms transaction 0
+  Step 2: Mar confirms transaction 0
     └─ Check: 2/3 approvals needed
-    └─ Bob: ✅ YES (1)
-    └─ Carol: ✅ YES (2) ← Threshold reached!
+    └─ Pau: ✅ YES (1)
+    └─ Mar: ✅ YES (2) ← Threshold reached!
     └─ Auto-execute!
 
   Step 3: Multisig executes
@@ -372,7 +372,7 @@ With Multisig (Safe):
 
 PROOF ON BLOCKCHAIN:
   • Transaction came from Multisig (not deployer)
-  • Both Bob & Carol approved (immutable record)
+  • Both Pau & Mar approved (immutable record)
   • Fund got exactly 1000 K42T
   • Transparent & auditable
 ```
