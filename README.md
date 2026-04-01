@@ -41,7 +41,8 @@ The token rewards community members for trades, listings, and referrals. Points 
 - Verified: Yes
 
 **Bonus – Multisig (2/3)**  
-- Address: `[Will appear after running `make deploy-bonus`]`  
+- Address: `0x33f57f6aE897448852f6DC2D7F7Ab21654B9710e`
+- Explorer: [https://sepolia.etherscan.io/token/0x33f57f6aE897448852f6DC2D7F7Ab21654B9710e](https://sepolia.etherscan.io/token/0x33f57f6aE897448852f6DC2D7F7Ab21654B9710e)  
 - Controls the token ownership
 
 ---
