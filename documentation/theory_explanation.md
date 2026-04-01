@@ -417,7 +417,7 @@ PROOF ON BLOCKCHAIN:
 ## Next Steps
 
 **Want deeper technical details?**
-→ Read [CODE_EXPLANATION.md](CODE_EXPLANATION.md)
+→ Read [code_explanation.md](code_explanation.md)
 
 **Want to deploy Kicks42Token?**
 → Follow [usage.md](usage.md)
