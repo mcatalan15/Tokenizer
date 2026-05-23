@@ -41,7 +41,8 @@ The token rewards community members for trades, listings, and referrals. Points 
 - Verified: Yes
 
 **Bonus – Multisig (2/3)**  
-- Address: `[Will appear after running `make deploy-bonus`]`  
+- Address: `0x33f57f6aE897448852f6DC2D7F7Ab21654B9710e`
+- Explorer: [https://sepolia.etherscan.io/token/0x33f57f6aE897448852f6DC2D7F7Ab21654B9710e](https://sepolia.etherscan.io/token/0x33f57f6aE897448852f6DC2D7F7Ab21654B9710e)  
 - Controls the token ownership
 
 ---
@@ -64,12 +65,14 @@ Tokenizer/
 │   └── script/
 │       └── DeployKicks42Token.s.sol    # Mandatory deployment script
 ├── documentation/
+│   ├── code_explanation
+│   ├── theory_explanation
 │   ├── usage.md
 │   └── whitepaper.md
-├── Makefile                            # Project management commands
 ├── docker-compose.yml                  # Docker configuration
 ├── Dockerfile                          # Development container image
 ├── foundry.toml                        # Foundry config file
+├── Makefile                            # Project management commands
 └── README.md
 ```
 
@@ -89,10 +92,12 @@ make verify-bonus
 
 ## Documentation
 
+- **[Theory Explanation](documentation/THEORY_EXPLANATION.md)** – What is ERC-20 and Multisig? (start here!)
+- **[Code Explanation](documentation/code_explanation.md)** – Deep dive into the implementation details
 - **[Usage Guide](documentation/usage.md)** – Full commands, demos, and multisig usage
 - **[Whitepaper](documentation/whitepaper.md)** – Project explanation and vision
 
 ---
 
 **Made with ❤️ using Solidity, Foundry, Docker & OpenZeppelin**  
-42 School × BNB Chain Tokenizer Project
+
